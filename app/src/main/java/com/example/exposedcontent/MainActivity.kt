@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val c = contentResolver.query(u, cols, null, null, null)
 
         if(c?.moveToFirst() == true)
-            lab3_text.text = "Data read from content provider: " + getString(c.getColumnIndex(Constants.TEXT))
+            lab3_text.text = "Data read from content provider: " + c.getString(c.getColumnIndexOrThrow(Constants.TEXT))
         else
             lab3_text.text = "Access denied"
     }
