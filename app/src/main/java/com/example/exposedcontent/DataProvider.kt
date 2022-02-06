@@ -11,7 +11,7 @@ import com.example.exposedcontent.Constants.AUTHORITY
 
 class DataProvider:ContentProvider() {
     private var dbHelper:DBHelper ? = null
-    private val DATABASE_NAME = "Table.db"
+    private val DATABASE_NAME = "table.db"
     private val DATABASE_VERSION = 1
     private val DATUM_TABLE_NAME = "t1"
     private var sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
@@ -21,12 +21,12 @@ class DataProvider:ContentProvider() {
 
     init {
         sUriMatcher.addURI(AUTHORITY, DATUM_TABLE_NAME, DATUM)
-        sUriMatcher.addURI(AUTHORITY, "$DATUM_TABLE_NAME/#", DATUM_ID)
+        sUriMatcher.addURI(AUTHORITY, DATUM_TABLE_NAME + "/#", DATUM_ID)
         projMap.put(Constants.ID, Constants.ID)
         projMap.put(Constants.TEXT, Constants.TEXT)
     }
 
-    override fun insert(uri: Uri, cv: ContentValues?): Uri? {
+    override fun insert(uri: Uri, cv: ContentValues ?): Uri? {
         if (sUriMatcher.match(uri) != DATUM)
             throw IllegalArgumentException("Unknow Uri $uri")
 
